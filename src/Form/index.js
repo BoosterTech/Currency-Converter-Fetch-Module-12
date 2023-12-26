@@ -1,20 +1,23 @@
 import { useState } from "react";
-import { currencies } from "../currencies";
+// import { currencies } from "../currencies";
 import { Result } from "../Result";
 import { Clock } from "./Clock";
 import {
+  Failure,
   Field,
   FormField,
   Header,
   Info,
+  Loading,
   SubmitButton,
   Wrapper,
   WrapperButton,
 } from "./styled";
+import { useRatesData } from "./useRatesData";
 
 const Form = () => {
-  const [currency, setCurrency] = useState(currencies[0].abbreviation);
-  const [amount, setAmount] = useState();
+  const [currency, setCurrency] = useState("EUR");
+  const [amount, setAmount] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -22,11 +25,10 @@ const Form = () => {
   };
 
   const [result, setResult] = useState(null);
+  const ratesData = useRatesData();
 
   const calculateResult = (currency, amount) => {
-    const rate = currencies.find(
-      ({ abbreviation }) => abbreviation === currency
-    ).rate;
+    const rate = ratesData.data[currency].value; //
 
     setResult({
       sourceAmount: +amount,
@@ -40,40 +42,49 @@ const Form = () => {
       <Clock />
       <Header>CURRENCY CONVERTER</Header>
       <Wrapper>
-        <p>
-          <label>
-            Amount:{" "}
-            <Field
-              type="number"
-              min=".01"
-              step="0.01"
-              placeholder="enter amount in PLN*"
-              value={amount}
-              onChange={({ target }) => setAmount(target.value)}
-              required
-            />
-          </label>
-        </p>
-        <p>
-          <label>
-            Currency:
-            <Field
-              as="select"
-              name="Currency"
-              value={currency}
-              onChange={({ target }) => setCurrency(target.value)}
-            >
-              {currencies.map((currency) => (
-                <option
-                  key={currency.abbreviation}
-                  value={currency.abbreviation}
+        {ratesData.success === "loading" ? (
+          <Loading>
+            Loading exchange rates from European Central Bank...
+          </Loading>
+        ) : ratesData.success === false ? (
+          <Failure>
+            Something went wrong! Check your internet connection!
+          </Failure>
+        ) : (
+          <>
+            <p>
+              <label>
+                Amount:{" "}
+                <Field
+                  type="number"
+                  min=".01"
+                  step="0.01"
+                  placeholder="enter amount in PLN*"
+                  value={amount}
+                  onChange={({ target }) => setAmount(target.value)}
+                  required
+                />
+              </label>
+            </p>
+            <p>
+              <label>
+                Currency:
+                <Field
+                  as="select"
+                  name="Currency"
+                  value={currency}
+                  onChange={({ target }) => setCurrency(target.value)}
                 >
-                  {currency.name}
-                </option>
-              ))}
-            </Field>
-          </label>
-        </p>
+                  {Object.keys(ratesData.data).map((currency) => (
+                    <option key={currency} value={currency}>
+                      {currency}
+                    </option>
+                  ))}
+                </Field>
+              </label>
+            </p>
+          </>
+        )}
       </Wrapper>
 
       <div>
@@ -85,8 +96,7 @@ const Form = () => {
       </WrapperButton>
 
       <Info>
-        Currency rates taken from <strong>Google Finance</strong> website on
-        19.08.2023
+        Currency rates in line with <strong>European Central Bank</strong>(currencyapi.com website).
       </Info>
     </FormField>
   );
