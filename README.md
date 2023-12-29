@@ -17,7 +17,7 @@ https://boostertech.github.io/currency_converter_module_12/
 <p>
 
 
-![Screenshoo_of_app](public/Screenshot_Readme.png)
+![Screenshoo_of_app](public/opengraph.png)
 
 ## Available Scripts
 
