@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { currencies } from "../currencies";
 import { Result } from "../Result";
 import { Clock } from "./Clock";
 import {
@@ -14,6 +13,7 @@ import {
   WrapperButton,
 } from "./styled";
 import { useRatesData } from "./useRatesData";
+import { currencies } from "../currencies";
 
 const Form = () => {
   const [currency, setCurrency] = useState("EUR");
@@ -35,6 +35,13 @@ const Form = () => {
       finalAmount: amount / rate,
       currency,
     });
+  };
+
+  const findFullName = (currencyAbbreviation) => {
+    const foundCurrency = currencies.find(
+      (currency) => currency.shortName === currencyAbbreviation
+    );
+    return foundCurrency ? foundCurrency.fullName : "";
   };
 
   return (
@@ -77,7 +84,7 @@ const Form = () => {
                 >
                   {Object.keys(ratesData.data).map((currency) => (
                     <option key={currency} value={currency}>
-                      {currency}
+                      {currency}&nbsp;-&nbsp;{findFullName(currency)}
                     </option>
                   ))}
                 </Field>
@@ -96,7 +103,8 @@ const Form = () => {
       </WrapperButton>
 
       <Info>
-        Currency rates in line with <strong>European Central Bank</strong>(currencyapi.com website).
+        Currency rates in line with <strong>European Central Bank</strong>
+        (currencyapi.com website).
       </Info>
     </FormField>
   );
