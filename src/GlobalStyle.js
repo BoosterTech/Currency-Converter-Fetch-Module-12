@@ -17,12 +17,12 @@ body{
 }
 
 #root {
-
   display: flex;
   align-items: center;
   justify-content: center;
   background-image:url("${background}");
   background-position: center;
   background-size: cover; 
-  min-height: 100vh; 
-}`
+  background-repeat: no-repeat;
+  height: 100vh; 
+}`;

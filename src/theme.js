@@ -10,10 +10,10 @@ export const theme = {
     GreySpringLight: "#afb3afd0",
     Stack: "#7e807e",
     Tropaz: "#2661a5",
-    teal: "#008080",
-    crimson: "#db143c",
   },
+
   breakpoint: {
     mobile: 600,
+    mobileNarrow: 405,
   },
 };

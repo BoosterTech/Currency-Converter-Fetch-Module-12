@@ -7,6 +7,7 @@ import {
   FormField,
   Header,
   Info,
+  Label,
   Loading,
   SubmitButton,
   Wrapper,
@@ -59,37 +60,31 @@ const Form = () => {
           </Failure>
         ) : (
           <>
-            <p>
-              <label>
-                Amount:{" "}
-                <Field
-                  type="number"
-                  min=".01"
-                  step="0.01"
-                  placeholder="enter amount in PLN*"
-                  value={amount}
-                  onChange={({ target }) => setAmount(target.value)}
-                  required
-                />
-              </label>
-            </p>
-            <p>
-              <label>
-                Currency:
-                <Field
-                  as="select"
-                  name="Currency"
-                  value={currency}
-                  onChange={({ target }) => setCurrency(target.value)}
-                >
-                  {Object.keys(ratesData.data).map((currency) => (
-                    <option key={currency} value={currency}>
-                      {currency}&nbsp;-&nbsp;{findFullName(currency)}
-                    </option>
-                  ))}
-                </Field>
-              </label>
-            </p>
+            <Label for="inputAmount">Amount: </Label>
+            <Field
+              id="inputamount"
+              type="number"
+              min=".01"
+              step="0.01"
+              placeholder="enter amount in PLN*"
+              value={amount}
+              onChange={({ target }) => setAmount(target.value)}
+              required
+            />
+
+            <Label for="currencyAmount">Currency:</Label>
+            <Field
+              as="select"
+              name="Currency"
+              value={currency}
+              onChange={({ target }) => setCurrency(target.value)}
+            >
+              {Object.keys(ratesData.data).map((currency) => (
+                <option key={currency} value={currency}>
+                  {currency}&nbsp;-&nbsp;{findFullName(currency)}
+                </option>
+              ))}
+            </Field>
           </>
         )}
       </Wrapper>

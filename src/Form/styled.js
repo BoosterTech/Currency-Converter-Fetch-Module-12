@@ -6,14 +6,9 @@ export const FormField = styled.form`
   max-width: 600px;
   background-color: ${({ theme }) => theme.color.Negroni};
   padding: 15px;
-
-  @media (max-width<${({ theme }) => theme.breakpoint.mobile}px) {
-    width: 600px;
-  }
 `;
 
 export const Header = styled.h1`
-  max-width: 100vh;
   text-align: center;
   font-size: large;
   color: ${({ theme }) => theme.color.white};
@@ -22,17 +17,47 @@ export const Header = styled.h1`
   padding: 10px 75px;
   border: 1px solid ${({ theme }) => theme.color.Tropaz};
   border-radius: 5px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
+    width: 80%;
+    font-size: medium;
+    padding:10px 10px;
+  }
 `;
 
 export const Wrapper = styled.div`
-  width: 300px;
-  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 315px;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
+    grid-template-columns: 1fr;
+    margin: auto;
+  }
+`;
+
+export const Label = styled.label`
+  text-align: right;
+  width: auto;
+  margin-right: 3px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
+    text-align: center;
+    display: block;
+  }
 `;
 
 export const Field = styled.input`
   width: 190px;
   max-width: 190px;
-  float: right;
+  text-align: left;
+  margin: 3px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
+    margin: 5px auto;
+  }
 `;
 
 export const WrapperButton = styled.div`
@@ -54,13 +79,22 @@ export const SubmitButton = styled.button`
     background-color: ${({ theme }) => theme.color.GreySpringLight};
     cursor: pointer;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
+    width: 80%;
+  }
 `;
 
 export const Info = styled.p`
   margin: 0 auto;
   font-size: small;
   text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
+    width: 80%;
+  }
 `;
+
 
 export const Loading = styled.p`
   color: ${({ theme }) => theme.color.teal};

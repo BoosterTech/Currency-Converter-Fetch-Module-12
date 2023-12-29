@@ -14,11 +14,5 @@ const clockFormat = (date) =>
 export const Clock = () => {
   const date = useCurrentDate();
 
-  return (
-    <Wrapper>
-      Today is
-      {" "}
-      {clockFormat(date)}
-    </Wrapper>
-  );
+  return <Wrapper>Today is {clockFormat(date)}</Wrapper>;
 };
