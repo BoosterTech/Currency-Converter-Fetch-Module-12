@@ -2,12 +2,12 @@
 ## Converting PLN amounts into different 3 currencies (EUR, USD, GBP)
 ### Technologies used:
 - HTML, CSS, JavaScript (including "ECMAScript 6" features)
-- BEM
 - React
 - Styled Components
+- Fetch API
   
 ### Demo:
-https://boostertech.github.io/currency-calculator-React/
+https://boostertech.github.io/currency_converter_module_12/
 ### How it works?
 1. Insert an **Amount** in PLN (*required field).
 2. Choose **Currency** you would like to convert to.
