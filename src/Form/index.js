@@ -105,7 +105,6 @@ const Form = () => {
 
       <Info>
         Currency rates in line with <strong>European Central Bank</strong>
-        (currencyapi.com website).
       </Info>
     </FormField>
   );
