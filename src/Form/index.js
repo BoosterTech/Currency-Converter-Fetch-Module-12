@@ -12,9 +12,11 @@ import {
   SubmitButton,
   Wrapper,
   WrapperButton,
+  LoaderWrapper,
 } from "./styled";
 import { useRatesData } from "./useRatesData";
 import { currencies } from "../currencies";
+import { LoadingSpinner } from "./Loader";
 
 const Form = () => {
   const [currency, setCurrency] = useState("EUR");
@@ -49,17 +51,21 @@ const Form = () => {
     <FormField onSubmit={onSubmit}>
       <Clock />
       <Header>CURRENCY CONVERTER</Header>
-      <Wrapper>
-        {ratesData.success === "loading" ? (
-          <Loading>
-            Loading exchange rates from European Central Bank...
-          </Loading>
-        ) : ratesData.success === false ? (
-          <Failure>
-            Something went wrong! Check your internet connection!
-          </Failure>
-        ) : (
+
+      {ratesData.success === "loading" ? (
+        <Loading>
           <>
+            Loading exchange rates from European Central Bank...
+            <LoaderWrapper>
+              <LoadingSpinner />
+            </LoaderWrapper>
+          </>
+        </Loading>
+      ) : ratesData.success === false ? (
+        <Failure>Something went wrong! Check your internet connection!</Failure>
+      ) : (
+        <>
+          <Wrapper>
             <Label for="inputAmount">Amount: </Label>
             <Field
               id="inputamount"
@@ -85,9 +91,9 @@ const Form = () => {
                 </option>
               ))}
             </Field>
-          </>
-        )}
-      </Wrapper>
+          </Wrapper>
+        </>
+      )}
 
       <div>
         <Result result={result} />

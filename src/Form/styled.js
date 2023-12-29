@@ -21,14 +21,14 @@ export const Header = styled.h1`
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileNarrow}px) {
     width: 80%;
     font-size: medium;
-    padding:10px 10px;
+    padding: 10px 10px;
   }
 `;
 
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 315px;
+  width: 330px;
   align-items: center;
   justify-content: center;
 
@@ -50,8 +50,8 @@ export const Label = styled.label`
 `;
 
 export const Field = styled.input`
-  width: 190px;
-  max-width: 190px;
+  width: 180px;
+  max-width: 180px;
   text-align: left;
   margin: 3px;
 
@@ -95,11 +95,16 @@ export const Info = styled.p`
   }
 `;
 
-
 export const Loading = styled.p`
   color: ${({ theme }) => theme.color.teal};
 `;
 
 export const Failure = styled.p`
   color: ${({ theme }) => theme.color.crimson};
+`;
+
+export const LoaderWrapper = styled.div`
+  text-align: center;
+  margin-top:50px;
+  height: auto;
 `;
