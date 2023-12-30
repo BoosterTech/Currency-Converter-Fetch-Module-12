@@ -1,5 +1,5 @@
 # Currency-calculator
-## Converting PLN amounts into different 3 currencies (EUR, USD, GBP)
+## Converting PLN amounts into different currencies
 ### Technologies used:
 - HTML, CSS, JavaScript (including "ECMAScript 6" features)
 - React
