@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchRates } from "./api";
 
 export const useRatesData = () => {
-  const [ratesData, setRatesData] = useState({ success: "loading" });
+  const [ratesData, setRatesData] = useState({ state: "loading" });
 
   useEffect(() => {
     const fetchData = async () => {

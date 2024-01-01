@@ -52,7 +52,7 @@ const Form = () => {
       <Clock />
       <Header>CURRENCY CONVERTER</Header>
 
-      {ratesData.success === "loading" ? (
+      {ratesData.state === "loading" ? (
         <Loading>
           <>
             Loading exchange rates from European Central Bank...
@@ -61,7 +61,7 @@ const Form = () => {
             </LoaderWrapper>
           </>
         </Loading>
-      ) : ratesData.success === false ? (
+      ) : ratesData.state === "error" ? (
         <Failure>Something went wrong! Check your internet connection!</Failure>
       ) : (
         <>

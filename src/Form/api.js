@@ -11,13 +11,13 @@ export const fetchRates = async () => {
     const { meta, data } = await response.json();
 
     return {
-      success: true,
+      state: "success",
       meta,
       data,
     };
   } catch {
     return {
-      success: false,
+      state: "error",
     };
   }
 };
