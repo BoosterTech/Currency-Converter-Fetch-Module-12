@@ -19,12 +19,13 @@ import { currencies } from "../currencies";
 import { LoadingSpinner } from "./Loader";
 
 const Form = () => {
-  const [currency, setCurrency] = useState("EUR");
+  const [toCurrency, setToCurrency] = useState("");
+  const [fromCurrency, setFromCurrency] = useState("");
   const [amount, setAmount] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
-    calculateResult(currency, amount);
+    calculateResult(toCurrency, amount);
   };
 
   const [result, setResult] = useState(null);
@@ -78,13 +79,28 @@ const Form = () => {
               required
             />
 
-            <Label for="currencyAmount">Currency:</Label>
+            <Label for="currencyAmount">Convert from:</Label>
             <Field
               as="select"
-              name="Currency"
-              value={currency}
-              onChange={({ target }) => setCurrency(target.value)}
+              name="FromCurrency"
+              value={fromCurrency}
+              onChange={({ target }) => setFromCurrency(target.value)}
             >
+              <option value="">Select a currency</option>
+              {Object.keys(ratesData.data).map((currency) => (
+                <option key={currency} value={currency}>
+                  {currency}&nbsp;-&nbsp;{findFullName(currency)}
+                </option>
+              ))}
+            </Field>
+            <Label for="currencyAmount">Convert to:</Label>
+            <Field
+              as="select"
+              name="ToCurrency"
+              value={toCurrency}
+              onChange={({ target }) => setToCurrency(target.value)}
+            >
+              <option value="">Select a currency</option>
               {Object.keys(ratesData.data).map((currency) => (
                 <option key={currency} value={currency}>
                   {currency}&nbsp;-&nbsp;{findFullName(currency)}
