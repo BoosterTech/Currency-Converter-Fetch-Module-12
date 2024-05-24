@@ -25,19 +25,24 @@ const Form = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    calculateResult(toCurrency, amount);
+    calculateResult(fromCurrency, toCurrency, amount);
   };
 
   const [result, setResult] = useState(null);
   const ratesData = useRatesData();
 
-  const calculateResult = (currency, amount) => {
-    const rate = ratesData.data[currency].value; //
+  const calculateResult = (fromCurrency, toCurrency, amount) => {
+    const valueFrom = ratesData.data[fromCurrency].value;
+    const valueTo = ratesData.data[toCurrency].value;
+    const conversionFactor = valueTo / valueFrom;
+
+    // const rate = ratesData.data[currency].value; //
 
     setResult({
       sourceAmount: +amount,
-      finalAmount: amount * rate,
-      currency,
+      finalAmount: amount * conversionFactor,
+      fromCurrency,
+      toCurrency,
     });
   };
 
