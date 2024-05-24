@@ -95,7 +95,7 @@ export const Info = styled.p`
   }
 `;
 
-export const Loading = styled.p`
+export const Loading = styled.div`
   color: ${({ theme }) => theme.color.teal};
 `;
 
