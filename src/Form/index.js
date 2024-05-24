@@ -78,7 +78,7 @@ const Form = () => {
               type="number"
               min=".01"
               step="0.01"
-              placeholder={`enter amount in ${fromCurrency}*`}
+              placeholder={`Enter amount in ${fromCurrency}*`}
               value={amount}
               onChange={({ target }) => setAmount(target.value)}
               required
