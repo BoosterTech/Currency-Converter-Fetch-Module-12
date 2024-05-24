@@ -72,9 +72,9 @@ const Form = () => {
       ) : (
         <>
           <Wrapper>
-            <Label for="inputAmount">Amount: </Label>
+            <Label htmlFor="inputAmount">Amount: </Label>
             <Field
-              id="inputamount"
+              id="inputAmount"
               type="number"
               min=".01"
               step="0.01"
@@ -84,9 +84,10 @@ const Form = () => {
               required
             />
 
-            <Label for="currencyAmount">Convert from:</Label>
+            <Label htmlFor="fromCurrency">Convert from:</Label>
             <Field
               as="select"
+              id="fromCurrency"
               name="FromCurrency"
               value={fromCurrency}
               onChange={({ target }) => setFromCurrency(target.value)}
@@ -98,9 +99,10 @@ const Form = () => {
                 </option>
               ))}
             </Field>
-            <Label for="currencyAmount">Convert to:</Label>
+            <Label htmlFor="toCurrency">Convert to:</Label>
             <Field
               as="select"
+              id="toCurrency"
               name="ToCurrency"
               value={toCurrency}
               onChange={({ target }) => setToCurrency(target.value)}
